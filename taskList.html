@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strive Ignite - Week 3 // Day 6</title>
+
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+
+        .hidden {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Inspect the page to find the excercises ;-)</h2>
+
+    <input type="text" id="task" />
+    <input type="button" onclick="addTask()" value ="add task" />
+    <input type="checkbox" id="completedonly" onchange="changeList()" >
+    <input type="button" value="clear" onclick="removeEverything()" />
+
+    <ul id="taskList"></ul>
+
+    <script>
+
+        function removeEverything(){
+            document.querySelector("#taskList").innerHTML =""
+        }
+
+        function changeList() {
+            let checkbox = document.querySelector("#completedonly").checked
+            if (checkbox) {
+                let completed = document.querySelectorAll(".completed")
+                for(let i = 0; i < completed.length; i ++)
+                    completed[i].classList.add("hidden")
+            }
+            else{
+                let hidden = document.querySelectorAll(".hidden")
+                for(let i = 0; i < hidden.length; i ++)
+                    hidden[i].classList.remove("hidden")
+            }
+        }
+
+        function addTask() {
+            let myNewTask = document.querySelector("#task").value
+            let taskList = document.querySelector("#taskList")
+
+            let li = document.createElement("li")
+            li.innerText = myNewTask;
+            taskList.appendChild(li)
+
+            li.addEventListener("click", (e) => e.currentTarget.classList.toggle("completed"))
+        }
+        /*
+        
+        You are about to create your own Task List.
+        The user might be able to:
+        - Create new tasks by writing them in a text box and pressing a button to add them
+        - Mark a task as completed by clicking on it. The element should look different when completed
+        - Restore a completed task by clicking on it. 
+        - Have a checkbox to show only "non-completed" tasks
+        - Add a button to clear the list
+
+
+        Hints:
+        - Create the list elements using the createElement function
+        - Add the event to them and pass the event to the function that should handle it
+        - Rememeber that from the event you can access to the element that generated it using the .target property
+
+        */
+    </script>
+</body>
+</html>

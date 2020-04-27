@@ -12,14 +12,13 @@ const loadPreviousBooks = async () =>{
     else{
         console.log("Cannot find page -1")
     }
-
 }
 
 const loadNextBooks = async () =>{
     if (page === 0)
         document.querySelector("#prevLink").classList.remove("disabled")
 
-    page = page+1 //page++;
+    page = page + 1 //page++;
     await search()
 }
 
